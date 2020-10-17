@@ -1,2 +1,32 @@
-<h1>Admin::Genres#index</h1>
-<p>Find me in app/views/admin/genres/index.html.erb</p>
+  <%= form_for(@genre, url:admin_genres_path) do |f| %>
+
+    <div class="form-group">
+      <p>ジャンル一覧・追加</p>
+      
+      <%= f.label 'ジャンル'%>
+      <%= f.text_field :name %>
+      <%= f.radio_button :is_active, :Availble %>
+      <%= f.label '有効' %>
+      <%= f.radio_button :is_active, :Invalid %>
+      <%= f.label '無効' %>
+      <%= f.submit '追加', class:"btn btn-info btn-md" %>
+    <% end %>
+    </div>
+    
+    
+    <% @genres.each do |genre| %>
+    <%= genre.name %>
+    <%= genre.is_active %>
+     <% if genre.is_active == "Availble"  %>
+          a
+     <% else %> 
+        b
+     <% end %>
+    <% end %>
+    
+    
+
+    
+
+
+  
