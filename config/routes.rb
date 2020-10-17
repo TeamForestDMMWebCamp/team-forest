@@ -33,7 +33,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:create, :index, :show, :new]
 
   end
-  
+
 
   scope module: :public do
     resources :shipping_addresses, only: [:index, :edit, :create, :update, :destroy]
