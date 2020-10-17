@@ -12,21 +12,38 @@
       <%= f.submit '追加', class:"btn btn-info btn-md" %>
     <% end %>
     </div>
+  
     
+<table class=table>
+  <thead>
+  <tr>
+   <th>ジャンル</th>
+   <th>状態</th>
+   <th></th>
+  </tr>
+  </thead>
+  
+  <tbody>
+      <% @genres.each do |genre| %>
+  <tr>
     
-    <% @genres.each do |genre| %>
-    <%= genre.name %>
-    <%= genre.is_active %>
-     <% if genre.is_active == "Availble"  %>
-          a
+     <td>
+   <%= genre.name %>
+    </td>
+    <td>
+   <% if genre.is_active == "Availble"  %>
+     <%= "有効"%>
      <% else %> 
-        b
+      <%= "無効" %>
      <% end %>
-    <% end %>
+     </td>
+     
     
-    
-
-    
-
-
+    <td>
+     <%= link_to "編集する",edit_admin_genre_path(genre.id)%>
+    </td>
+  </tr>
+  <% end %>
+  </tbody>
+  </table>
   
