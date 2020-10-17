@@ -1,2 +1,30 @@
 <h1>Admin::Products#new</h1>
 <p>Find me in app/views/admin/products/new.html.erb</p>
+
+<h2>User info</h2>
+
+<%= form_with model:@new, local: true do |f| %>
+
+  <div class="field">
+		<%= f.label :image %>
+		<%#= attachment_image_tag(productr, :image_id, fallback: "no_image.jpg", size: "100x100") %>
+		<%= f.attachment_field :profile_image, class: "user_image" %>
+	</div>
+
+
+	<div class="field">
+		<%= f.label :name %>
+		<%= f.text_field :name, class: "name" %>
+	</div>
+
+
+	<div class="field">
+		<%= f.label :discription %>
+		<%= f.text_area :discription, class: "introduction" %>
+	</div>
+
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+
+<% end %>
