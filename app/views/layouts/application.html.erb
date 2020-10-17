@@ -17,18 +17,16 @@
           </nav>
             <nav>
               <ul class="nav navbar-nav navbar-right">
-                <% if customer_signed_in? %>
-                  <% if current_user ==  current_user.admin? %>
+                <% if admin_signed_in? %>
                   <li><%= link_to "商品一覧(admin)", admin_products_path %></li>
-                  <li><%= link_to "会員一覧", admin_suctomers_path %></li>
+                  <li><%= link_to "会員一覧", admin_customers_path %></li>
                   <li><%= link_to "注文履歴一覧", admin_orders_path %></li>
                   <li><%= link_to "ジャンル一覧", admin_genres_path %></li>
-                  <% else %>
+                <% elsif customer_signed_in? %>
                   <li><%= link_to "マイページ(login)", customer_path %></li>
                   <li><%= link_to "商品一覧", products_path %></li>
                   <li><%= link_to "カート", cart_products_path %></li>
                   <li><%= link_to "ログアウト", destroy_customer_session_path %></li>
-                  <% end %>
                 <% else %>
                   <li><%= link_to "about(not login)", products_about_path %></li>
                   <li><%= link_to "商品一覧", products_path %></li>
