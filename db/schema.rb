@@ -38,6 +38,14 @@ ActiveRecord::Schema.define(version: 2020_10_15_130914) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "last_name"
+    t.string "first_name"
+    t.string "kana_last_name"
+    t.string "kana_first_name"
+    t.string "zip_code"
+    t.string "address"
+    t.string "phone_number"
+    t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
@@ -46,7 +54,7 @@ ActiveRecord::Schema.define(version: 2020_10_15_130914) do
 
   create_table "geners", force: :cascade do |t|
     t.string "name"
-    t.boolean "is_active"
+    t.boolean "is_active", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -55,7 +63,7 @@ ActiveRecord::Schema.define(version: 2020_10_15_130914) do
     t.integer "order_id"
     t.integer "product_id"
     t.integer "ordered_quantity"
-    t.integer "production_status"
+    t.integer "production_status", default: 0, null: false
     t.integer "price_including_tax"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -80,7 +88,7 @@ ActiveRecord::Schema.define(version: 2020_10_15_130914) do
     t.string "image_id"
     t.text "discription"
     t.integer "price_excluding_tax"
-    t.boolean "is_active"
+    t.boolean "is_active", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
