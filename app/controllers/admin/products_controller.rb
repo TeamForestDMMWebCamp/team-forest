@@ -16,4 +16,6 @@ class Admin::ProductsController < ApplicationController
 
   def update
   end
+  
+  
 end
