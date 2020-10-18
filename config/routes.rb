@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
     passwords:     'admins/passwords',
@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     passwords:     'customers/passwords',
     registrations: 'customers/registrations'
   }
-
+  
   namespace :admin do
     resources :ordered_products, only: [:update]
   end
