@@ -19,4 +19,11 @@ class Customer < ApplicationRecord
   def name
     last_name + first_name
   end
+
+  enum is_deleted: {active: false, inactive: true}
+
+  def active_for_authentication?
+    super && (self.is_deleted == "active")
+  end
+  # is_deletedがfalseならログイン可能
 end
