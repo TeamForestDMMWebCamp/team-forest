@@ -45,7 +45,7 @@ Rails.application.routes.draw do
   scope module: :public do
     get 'customers/quit'
     patch 'customers/out'
-    resources :customers, only: [:show, :edit, :update]
+    resource :customers, only: [:show, :edit, :update]
   end
 
   scope module: :public do

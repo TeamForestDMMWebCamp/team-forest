@@ -15,4 +15,8 @@ class Customer < ApplicationRecord
   has_many :cart_products
   has_many :orders
   has_many :shipping_addresses
+
+  def name
+    last_name + first_name
+  end
 end
