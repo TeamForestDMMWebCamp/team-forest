@@ -11,6 +11,7 @@ class Customer < ApplicationRecord
   validates :zip_code, presence: true
   validates :address, presence: true
   validates :phone_number, presence: true
+  validates :postal_code, length: {is: 7}, numericality: { only_integer: true }
 
   has_many :cart_products
   has_many :orders
