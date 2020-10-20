@@ -4,7 +4,7 @@
 
     <h2 class="head-line title_h2 text-center">登録情報編集</h2>
 
-    <%= form_with(model:@customer, url:customer_path, local: true ,method: :put) do |f| %>
+    <%= form_with(model:@customer, url:customer_path, local: true ,method: :patch) do |f| %>
 
       <%= render "layouts/error_messages", resource: @customer %>
 
