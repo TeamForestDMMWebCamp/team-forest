@@ -11,7 +11,7 @@ class Customer < ApplicationRecord
   validates :zip_code, presence: true
   validates :address, presence: true
   validates :phone_number, presence: true
-  validates :postal_code, length: {is: 7}, numericality: { only_integer: true }
+  validates :zip_code, length: {is: 7}, numericality: { only_integer: true }
 
   has_many :cart_products
   has_many :orders
@@ -24,12 +24,12 @@ class Customer < ApplicationRecord
   def kana_name
     kana_last_name + kana_first_name
   end
-  
+
   enum is_deleted: {active: false, inactive: true}
 
   def active_for_authentication?
     super && (self.is_deleted == "active")
   end
   # is_deletedがfalseならログイン可能
-  
+
 end
