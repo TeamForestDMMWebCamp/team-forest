@@ -3,7 +3,7 @@
 	<div class="row form-group">
 		<div class="col-xs-3">
 		  <div class="field">
-			  <%#= f.label :image %>
+			    <%= f.label :image %>
 				<%= attachment_image_tag(@product, :image, fallback: "no_image.jpg", size: "100x100") %>
 				<%= f.attachment_field :image, class: "user_image" %>
 			</div>
@@ -11,9 +11,9 @@
 
 
 	<div class="col-xs-9">
-		<label class="col-sm-2 control-label" for="InputPassword">商品名</label>
+
 		<div class="field form-group">
-			<%#= f.label :"商品名" %>
+			<%= f.label :"商品名" %>
 			<%= f.text_field :name, class: "name" %>
 		</div>
 
