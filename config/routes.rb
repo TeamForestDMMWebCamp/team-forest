@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
     passwords:     'admins/passwords',
@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     passwords:     'customers/passwords',
     registrations: 'customers/registrations'
   }
-  
+
   namespace :admin do
     resources :ordered_products, only: [:update]
   end
@@ -49,7 +49,7 @@ Rails.application.routes.draw do
     delete 'cart_products' => 'cart_products#destroy_all'
   end
   namespace :admin do
-    resources :products, only: [:index, :create, :destroy, :update, :show, :edit]
+    resources :products, only: [:index, :create, :new, :update, :show, :edit]
   end
   scope module: :public do
     resources :products, only: [:index, :show]

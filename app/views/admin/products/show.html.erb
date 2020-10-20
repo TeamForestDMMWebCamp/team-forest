@@ -1,2 +1,42 @@
-<h1>Admin::Products#show</h1>
-<p>Find me in app/views/admin/products/show.html.erb</p>
+<h2>商品詳細</h2>
+ <div class="row">
+
+		<!--books一覧 -->
+
+<div class="col-xs-3">
+				<%= attachment_image_tag(@product, :image, fallback: "no_image.jpg", size: "100x100") %>
+</div>
+<div class="col-xs-9">
+	<table class="table table-hover table-inverse">
+				<tr>
+					<th>商品名</th>
+					<td><%= @product.name %></td>
+					<%#= link_to book.title, book_path(book) %>
+				</tr>
+				<tr>
+					<th>商品説明</th>
+					<td><%= @product.discription %></td>
+				</tr>
+				<tr>
+					<th>ジャンル</th>
+					<td><%= @product.genre.name %></td>
+				</tr>
+				<tr>
+					<th>税込み価格</th>
+					<td><%= @product.price_excluding_tax %>(<%= @product.including_tax %>)円</td>
+				</tr>
+				<tr>
+					<th>販売ステータス</th>
+					<td><% if @product.is_active == "Availble"  %>
+				     <%= "有効" %>
+				     <% else %>
+				      <%= "無効" %>
+				     <% end %>
+     				</td>
+				</tr>
+				<tr><%= link_to "編集ページへ", edit_admin_product_path %></tr>
+
+
+</div>
+</div>
+		</table>

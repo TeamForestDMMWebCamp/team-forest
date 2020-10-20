@@ -1,2 +1,48 @@
-<h1>Admin::Products#new</h1>
-<p>Find me in app/views/admin/products/new.html.erb</p>
+<%= form_with model:@product, url: '/admin/products', method: :post, class: "form-horizontal", local: true do |f| %>
+
+	<div class="row form-group">
+		<div class="col-xs-3">
+		  <div class="field">
+			  <%#= f.label :image %>
+				<%= attachment_image_tag(@product, :image, fallback: "no_image.jpg", size: "100x100") %>
+				<%= f.attachment_field :image, class: "user_image" %>
+			</div>
+		</div>
+
+
+	<div class="col-xs-9">
+		<label class="col-sm-2 control-label" for="InputPassword">商品名</label>
+		<div class="field form-group">
+			<%#= f.label :"商品名" %>
+			<%= f.text_field :name, class: "name" %>
+		</div>
+
+		<div class="field">
+			<%= f.label :"商品説明" %>
+			<%= f.text_area :discription, class: "discription" %>
+		</div>
+
+		<div class="field">
+			<%= f.collection_select(:genre_id, Genre.all, :id, :name) %>
+		</div>
+
+		<div class="field">
+			<%= f.label :"税抜き価格" %>
+			<%= f.text_area :price_excluding_tax, class: "tax" %>
+		</div>
+
+		<div class="field">
+	  	<%= f.label '販売ステータス'%>
+      <%= f.radio_button :is_active, :Availble %>
+      <%= f.label '有効' %>
+      <%= f.radio_button :is_active, :Invalid %>
+      <%= f.label '無効' %>
+		</div>
+
+		<div class="actions">
+			<%= f.submit '新規登録', class:"btn btn-info btn-md" %>
+		</div>
+	</div>
+</div>
+
+<% end %>
