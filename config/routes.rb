@@ -39,7 +39,7 @@ Rails.application.routes.draw do
     resources :shipping_addresses, only: [:index, :edit, :create, :update, :destroy]
   end
   scope module: :public do
-    resources :customers, only: [:show, :edit, :update]
+    resource :customers, only: [:show, :edit, :update]
     get 'customers/quit'
     get 'customers/out'
 
