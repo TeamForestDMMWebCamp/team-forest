@@ -58,10 +58,10 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-    resources :products, only: [:index, :show]
-    get 'products/:genre_id' => 'products#genre'
     root 'products#top'
     get 'products/about'
+    get 'products/:genre_id' => 'products#genre'
+    resources :products, only: [:index, :show]
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
