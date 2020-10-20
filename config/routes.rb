@@ -59,7 +59,7 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root 'products#top'
-    get 'products/about'
+    get 'about' => 'products#about'
     get 'products/:genre_id' => 'products#genre'
     resources :products, only: [:index, :show]
   end
