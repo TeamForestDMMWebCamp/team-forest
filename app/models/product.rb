@@ -5,9 +5,9 @@ class Product < ApplicationRecord
  
 
 	#商品の税込み単価
-    def tax_included
-    	(price_excluding_tax*1.1).round
-    end
+  def including_tax
+    (price_excluding_tax*1.1).round(0)
+  end
 
   attachment :image
 end
