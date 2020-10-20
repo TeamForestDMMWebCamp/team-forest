@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
     passwords:     'admins/passwords',
@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     passwords:     'customers/passwords',
     registrations: 'customers/registrations'
   }
-  
+
   namespace :admin do
     resources :ordered_products, only: [:update]
   end
@@ -52,10 +52,10 @@ Rails.application.routes.draw do
     resources :products, only: [:index, :create, :destroy, :update, :show, :edit]
   end
   scope module: :public do
-    resources :products, only: [:index, :show]
-    get 'products/:genre_id' => 'products#genre'
     root 'products#top'
     get 'products/about'
+    get 'products/:genre_id' => 'products#genre'
+    resources :products, only: [:index, :show]
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
