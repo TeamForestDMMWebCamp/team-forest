@@ -20,10 +20,15 @@ class Customer < ApplicationRecord
     last_name + first_name
   end
 
+  def kana_name
+    kana_last_name + kana_first_name
+  end
+  
   enum is_deleted: {active: false, inactive: true}
 
   def active_for_authentication?
     super && (self.is_deleted == "active")
   end
   # is_deletedがfalseならログイン可能
+  
 end
