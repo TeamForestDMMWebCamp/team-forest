@@ -13,7 +13,7 @@
       <header class="navbar navbar-inverse">
         <div class="container">
           <nav class='nav navbar-nav navbar-left'>
-            <span>LOGO</span>
+            <span><%= image_tag "logo.jpg", :size => "400x150"%></span>
           </nav>
             <nav>
               <ul class="nav navbar-nav navbar-right">
@@ -23,10 +23,15 @@
                   <li><%= link_to "注文履歴一覧", admin_orders_path %></li>
                   <li><%= link_to "ジャンル一覧", admin_genres_path %></li>
                 <% elsif customer_signed_in? %>
+                
+                  <li>
+                    <h4 style="color: white;">ようこそ、<%= current_customer.name %>さん！</h4>
+                  </li>
+                
                   <li><%= link_to "マイページ(login)", customers_path %></li>
                   <li><%= link_to "商品一覧", products_path %></li>
                   <li><%= link_to "カート", cart_products_path %></li>
-                  <li><%= link_to "ログアウト", destroy_customer_session_path %></li>
+                  <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></li>
                 <% else %>
                   <li><%= link_to "about(not login)", products_about_path %></li>
                   <li><%= link_to "商品一覧", products_path %></li>
