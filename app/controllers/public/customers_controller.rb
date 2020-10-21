@@ -9,7 +9,7 @@ class Public::CustomersController < ApplicationController
 
   def out
     @customer = current_customer
-    @customer.is_deleted = :inactive
+    @customer.is_deleted = :Invalid
     @customer.save
     redirect_to root_path
   end
