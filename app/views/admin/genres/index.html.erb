@@ -1,3 +1,4 @@
+
   <%= form_for(@genre, url:admin_genres_path) do |f| %>
 
     <div class="form-group">
@@ -20,29 +21,27 @@
    <th>状態</th>
    <th></th>
   </tr>
-  </thead>''
+  </thead>
 
   <tbody>
+    
       <% @genres.each do |genre| %>
-  <tr>
-
-     <td>
-   <%= genre.name %>
-    </td>
-    <td>
-   <% if genre.is_active == "Availble"  %>
-     <%= "有効"%>
-     <% else %>
-      <%= "無効" %>
-     <% end %>
-     </td>
-
-
-    <td>
-     <%= link_to "編集する",edit_admin_genre_path(genre.id)%>
-    </td>
-  </tr>
-  <% end %>
-  </tbody>
-  </table>
+       <tr>
+         <td>
+           <%= genre.name %>
+         </td>
+         <td>
+           <% if genre.is_active == "Availble"  %>
+             <%= "有効"%>
+             <% else %>
+              <%= "無効" %>
+             <% end %>
+         </td>
+         <td>
+             <%= link_to "編集する",edit_admin_genre_path(genre.id)%>
+         </td>
+       </tr>
+      <% end %>
+     </tbody>
+    </table>
 

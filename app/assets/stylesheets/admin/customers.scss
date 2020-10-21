@@ -1,3 +1,22 @@
 // Place all the styles related to the admin::Customers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.center{
+  text-align: center;
+}
+.category-Availble{
+ display: inline-block;
+ padding: 1px 2px;
+ background-color: #A4c6FF;
+ border-radius: 3px;
+ border: 1px solid ;
+ color: black;
+}
+.category-Invalid{
+ display: inline-block;
+ padding: 1px 3px;
+ background-color: #DC143C;
+ border-radius: 3px;
+ border: 1px solid ;
+ color: black;
+}

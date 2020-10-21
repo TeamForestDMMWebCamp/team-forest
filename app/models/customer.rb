@@ -16,19 +16,18 @@ class Customer < ApplicationRecord
   has_many :cart_products
   has_many :orders
   has_many :shipping_addresses
-
-  def name
-    last_name + first_name
-  end
-
-  def kana_name
-    kana_last_name + kana_first_name
-  end
   
-  enum is_deleted: {active: false, inactive: true}
+  enum is_deleted: {Availble: false, Invalid: true}
+  
+  def kana_name
+      kana_last_name + kana_first_name
+  end
+  def name
+      last_name + first_name
+  end
 
   def active_for_authentication?
-    super && (self.is_deleted == "active")
+    super && (self.is_deleted == "Availble")
   end
   # is_deletedがfalseならログイン可能
   
