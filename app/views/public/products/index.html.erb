@@ -4,14 +4,16 @@
     <div class="col-md-2">
       <table class="table table-bordered">
         <th class="genre-th">Genre</th>
+
         <% @genres.each do |f|%>
-        <% if f.status == true %>
-        <tr class="genre-tr">
-          <td class="genre-td">
-            <%# ジャンルが無効なら表示しない %>
-            <%= link_to f.name, genre_path(f.id) %>
-            <% end %></td>
-        </tr>
+          <% if f.is_active == "Availble" %>
+            <tr class="genre-tr">
+              <td class="genre-td">
+                <%# ジャンルが無効なら表示しない %>
+                <%= link_to f.name, genre_path(f.id) %>
+                <% end %>
+              </td>
+            </tr>
         <% end %>
       </table>
     </div>
@@ -28,7 +30,7 @@
                 <%= attachment_image_tag product, :image, format: 'jpeg', fallback: "no_image.jpg", size: "200x100" %>
               <% end %><br>
               <%= product.name %><br>
-              <%= product.including_tax (:delimited) %>円
+              <%= product.including_tax.to_s(:delimited) %>円
             </td>
           </tr>
         </table>
