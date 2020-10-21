@@ -9,6 +9,8 @@ class Public::ProductsController < ApplicationController
   end
 
   def show
+    @genres = Genre.all
+    @product = Product.find(params[:id])
   end
 
   def top
