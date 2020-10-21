@@ -8,6 +8,18 @@
 		<br>
 		<div class="row">
 			<div class="col-md-5 col-md-offset-1">
+				<% if @customer.errors.any? %>
+  				<div class="alert-warning">
+          	<div class="alert1">
+             <p><%= pluralize(@customer.errors.count, "error") %></p>
+            </div>
+            <ul>
+            	<% @customer.errors.full_messages.each do |message| %>
+              	<li><%= message %></li>
+             	<% end %>
+            </ul>
+          </div>
+       	<% end %>      
 				<%=form_for(@customer, url:admin_customer_path) do |f| %>
 					<table class="table">
 						<div class="form-group">
