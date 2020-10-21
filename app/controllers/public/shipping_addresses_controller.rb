@@ -3,7 +3,7 @@ class Public::ShippingAddressesController < ApplicationController
   #before_action :authenticate_customer!
 
   def index
-  	@shipping_addresses = current_customer.shipping_address
+  	@shipping_addresses = current_customer.shipping_addresses
   	@shipping_address = ShippingAddress.new
   end
 

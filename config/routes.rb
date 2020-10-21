@@ -5,6 +5,13 @@ Rails.application.routes.draw do
     passwords:     'admins/passwords',
     registrations: 'admins/registrations'
   }
+
+  scope module: :public do
+    get 'customers/quit'
+    patch 'customers/out'
+    resource :customers, only: [:show, :edit, :update]
+  end
+
   devise_for :customers, controllers: {
     sessions:      'customers/sessions',
     passwords:     'customers/passwords',
@@ -40,12 +47,6 @@ Rails.application.routes.draw do
 
   scope module: :public do
     resources :shipping_addresses, only: [:index, :edit, :create, :update, :destroy]
-  end
-
-  scope module: :public do
-    get 'customers/quit'
-    patch 'customers/out'
-    resource :customers, only: [:show, :edit, :update]
   end
 
   scope module: :public do
