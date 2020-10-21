@@ -11,7 +11,7 @@ class Customer < ApplicationRecord
   validates :zip_code, presence: true
   validates :address, presence: true
   validates :phone_number, presence: true
-  validates :postal_code, length: {is: 7}, numericality: { only_integer: true }
+  validates :zip_code, length: {is: 7}, numericality: { only_integer: true }
 
   has_many :cart_products
   has_many :orders
@@ -30,5 +30,5 @@ class Customer < ApplicationRecord
     super && (self.is_deleted == "Availble")
   end
   # is_deletedがfalseならログイン可能
-  
+
 end

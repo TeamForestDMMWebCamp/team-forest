@@ -4,7 +4,7 @@
 
     <h2 class="head-line title_h2 text-center">登録情報編集</h2>
 
-    <%= form_with(model:@customer, url:customer_path, local: true ,method: :patch) do |f| %>
+    <%= form_with(model:@customer, url:customers_path, local: true ,method: :patch) do |f| %>
 
       <%= render "layouts/error_messages", resource: @customer %>
 
@@ -25,7 +25,7 @@
         </div>
         <div class="form-group col-xs-12">
           <%= f.label :"郵便番号", class: "col-sm-3 control-label" %>
-          <%= f.text_field :postal_code, class: "col-sm-2 form-control-static" %>
+          <%= f.text_field :zip_code, class: "col-sm-2 form-control-static" %>
         </div>
         <div class="form-group col-xs-12">
           <%= f.label :"住所", class: "col-sm-3 control-label" %>
@@ -39,7 +39,7 @@
 
       <div class="actions col-xs-9 col-xs-offset-3">
         <%= f.submit "編集内容を保存する", class: "btn btn-primary save col-xs-6" %>
-        <%= link_to '退会する', quit_customers_path, class: "glyphicon glyphicon-tint btn btn-danger"%>
+        <%= link_to '退会する', customers_quit_path, class: "glyphicon glyphicon-tint btn btn-danger"%>
       </div>
     <% end %>
     <div class="col-xs-12">
