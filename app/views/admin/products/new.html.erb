@@ -1,48 +1,73 @@
-<%= form_with model:@product, url: '/admin/products', method: :post, class: "form-horizontal", local: true do |f| %>
-
-	<div class="row form-group">
-		<div class="col-xs-3">
-		  <div class="field">
-			    <%= f.label :image %>
-				<%= attachment_image_tag(@product, :image, fallback: "no_image.jpg", size: "100x100") %>
-				<%= f.attachment_field :image, class: "user_image" %>
+<div class="container">
+	<div class="row">
+		<%= form_with model:@product, url: '/admin/products', method: :post, class: "form-horizontal", local: true do |f| %>
+			<div class="col-md-3">
+				<div class="field">
+				  	<%= attachment_image_tag(@product, :image, fallback: "no_image.jpg", size: "300x300") %>
+					<%= f.attachment_field :image, class: "user_image" %>
+				</div>
 			</div>
-		</div>
 
+			<div class="col-md-9">
+				<br>
+				<br>
+				<br>
+				<br>
 
-	<div class="col-xs-9">
+				<div class="field form-group">
+					<label class="col-md-2 control-label" for="InputEmail">商品名</label>
+						<div class="col-md-10">
+							<%#= f.label :"商品名" %>
+							<%= f.text_field :name, class: "name" %>
+						</div>
+				</div>
 
-		<div class="field form-group">
-			<%= f.label :"商品名" %>
-			<%= f.text_field :name, class: "name" %>
-		</div>
+				<div class="field form-group">
+					<label class="col-md-2 control-label" for="InputEmail">商品説明</label>
+						<div class="col-md-10">
+							<%#= f.label :"商品説明" %>
+							<%= f.text_area :discription, class: "discription" %>
+					</div>
+				</div>
 
-		<div class="field">
-			<%= f.label :"商品説明" %>
-			<%= f.text_area :discription, class: "discription" %>
-		</div>
+				<div class="field form-group">
+					<label class="col-md-2 control-label" for="InputEmail">ジャンル</label>
+						<div class="col-md-3">
+							<%#= f.label :"ジャンル" %>
+							<%= f.collection_select(:genre_id, Genre.all, :id, :name, {},{class: "col-md-10"}) %>
+						</div>
+				</div>
 
-		<div class="field">
-			<%= f.collection_select(:genre_id, Genre.all, :id, :name) %>
-		</div>
+				<div class="field form-group">
+					<label class="col-md-2 control-label" for="InputEmail">税抜き価格</label>
+						<div class="col-md-10">
+							<%#= f.label :"税抜き価格" %>
+							<%= f.text_field :price_excluding_tax, class: "tax" %>
+						</div>
+				</div>
 
-		<div class="field">
-			<%= f.label :"税抜き価格" %>
-			<%= f.text_area :price_excluding_tax, class: "tax" %>
-		</div>
+				<div class="field form-group">
+					<label class="col-md-2 control-label" for="InputEmail">販売ステータス</label>
+						<div class="col-md-10">
+					    	<%#= f.label '販売ステータス'%>
+				     		<%#= f.radio_button :is_active, :Availble %>
+				      		<%#= f.label '販売中' %>
+				      		<%#= f.radio_button :is_active, :Invalid %>
+				      		<%#= f.label '売り切れ' %>
 
-		<div class="field">
-	  <%= f.label '販売ステータス'%>
-      <%= f.radio_button :is_active, :Availble %>
-      <%= f.label '有効' %>
-      <%= f.radio_button :is_active, :Invalid %>
-      <%= f.label '無効' %>
-		</div>
+				      		<%= f.select :is_active, [['売り切れ',0],['販売中',1]], { include_blank: true, selected: 0 } %>
 
-		<div class="actions">
-			<%= f.submit '新規登録', class:"btn btn-info btn-md" %>
-		</div>
+	      				</div>
+				</div>
+
+				<div class="actions form-group" align="right">
+
+					<div class="col-md-offset-2 col-md-10">
+						<%= f.submit '商品新規登録', class:"btn btn-info btn-md" %>
+					</div>
+				</div>
+			</div>
+
+		<% end %>
 	</div>
 </div>
-
-<% end %>

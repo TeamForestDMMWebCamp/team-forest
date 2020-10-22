@@ -1,4 +1,4 @@
-<% if product.genre.is_active == true %>
+<% if product.genre.is_active == "Availble" %>
   <div class="product-container">
     <%= link_to product_path(product.id), class: "btn-link", :style=>"color:0099FF;" do %>
 
@@ -7,14 +7,14 @@
       </div>
 
       <p class="products-name">
-    <%= product.name %>
+        <%= product.name %>
       </p>
     <% end %>
 
-    <% if product.is_active == true %>
-      <p>¥<%= product.including_tax(:delimited) %></p>
-    <% elsif product.is_active == false %>
-     <p class="soldout">売り切れ中</p>
-    <% end %>
+    <%# if product.is_active == true %>
+      <!--<p>¥<%#= product.including_tax(:delimited) %></p>-->
+    <%# elsif product.is_active == false %>
+     <!--<p class="soldout">売り切れ中</p>-->
+    <%# end %>
   </div>
 <% end %>
