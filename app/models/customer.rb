@@ -22,6 +22,7 @@ class Customer < ApplicationRecord
   def kana_name
       kana_last_name + kana_first_name
   end
+
   def name
       last_name + first_name
   end
