@@ -1,9 +1,10 @@
 <div class="container">
 	<div class="row">
+		<br>
 		<%= form_with model:@product, url: '/admin/products', method: :post, class: "form-horizontal", local: true do |f| %>
 			<div class="col-md-3">
 				<div class="field">
-				  	<%= attachment_image_tag(@product, :image, fallback: "no_image.jpg", size: "300x300") %>
+				  	<%= attachment_image_tag(@product, :image, fallback: "no_image.jpg", size: "250x250") %>
 					<%= f.attachment_field :image, class: "user_image" %>
 				</div>
 			</div>
@@ -13,11 +14,10 @@
 				<br>
 				<br>
 				<br>
-
 				<div class="field form-group">
 					<label class="col-md-2 control-label" for="InputEmail">商品名</label>
 						<div class="col-md-10">
-							<%#= f.label :"商品名" %>
+
 							<%= f.text_field :name, class: "name" %>
 						</div>
 				</div>
@@ -25,7 +25,7 @@
 				<div class="field form-group">
 					<label class="col-md-2 control-label" for="InputEmail">商品説明</label>
 						<div class="col-md-10">
-							<%#= f.label :"商品説明" %>
+
 							<%= f.text_area :discription, class: "discription" %>
 					</div>
 				</div>
@@ -33,7 +33,7 @@
 				<div class="field form-group">
 					<label class="col-md-2 control-label" for="InputEmail">ジャンル</label>
 						<div class="col-md-3">
-							<%#= f.label :"ジャンル" %>
+
 							<%= f.collection_select(:genre_id, Genre.all, :id, :name, {},{class: "col-md-10"}) %>
 						</div>
 				</div>
@@ -41,7 +41,7 @@
 				<div class="field form-group">
 					<label class="col-md-2 control-label" for="InputEmail">税抜き価格</label>
 						<div class="col-md-10">
-							<%#= f.label :"税抜き価格" %>
+
 							<%= f.text_field :price_excluding_tax, class: "tax" %>
 						</div>
 				</div>
@@ -49,19 +49,11 @@
 				<div class="field form-group">
 					<label class="col-md-2 control-label" for="InputEmail">販売ステータス</label>
 						<div class="col-md-10">
-					    	<%#= f.label '販売ステータス'%>
-				     		<%#= f.radio_button :is_active, :Availble %>
-				      		<%#= f.label '販売中' %>
-				      		<%#= f.radio_button :is_active, :Invalid %>
-				      		<%#= f.label '売り切れ' %>
-
-				      		<%= f.select :is_active, [['売り切れ',0],['販売中',1]], { include_blank: true, selected: 0 } %>
-
+				      		<%= f.select :is_active, [['販売中', :Availble ],['売り切れ', :Invalid ]], { include_blank: true } %>
 	      				</div>
 				</div>
 
 				<div class="actions form-group" align="right">
-
 					<div class="col-md-offset-2 col-md-10">
 						<%= f.submit '商品新規登録', class:"btn btn-info btn-md" %>
 					</div>
