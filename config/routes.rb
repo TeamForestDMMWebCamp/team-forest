@@ -5,6 +5,13 @@ Rails.application.routes.draw do
     passwords:     'admins/passwords',
     registrations: 'admins/registrations'
   }
+
+  scope module: :public do
+    get 'customers/quit'
+    patch 'customers/out'
+    resource :customers, only: [:show, :edit, :update]
+  end
+
   devise_for :customers, controllers: {
     sessions:      'customers/sessions',
     passwords:     'customers/passwords',
@@ -43,12 +50,6 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-    get 'customers/quit'
-    patch 'customers/out'
-    resource :customers, only: [:show, :edit, :update]
-  end
-
-  scope module: :public do
     resources :cart_products, only: [:index, :create, :destroy, :update]
     delete 'cart_products' => 'cart_products#destroy_all'
   end
@@ -59,8 +60,8 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root 'products#top'
-    get 'products/about'
-    get 'products/:genre_id' => 'products#genre'
+    get 'about' => 'products#about'
+    get 'products/genre/:genre_id' => 'products#genre', as: "genre"
     resources :products, only: [:index, :show]
   end
 

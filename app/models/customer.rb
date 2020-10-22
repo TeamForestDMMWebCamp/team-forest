@@ -16,9 +16,9 @@ class Customer < ApplicationRecord
   has_many :cart_products
   has_many :orders
   has_many :shipping_addresses
-  
+
   enum is_deleted: {Availble: false, Invalid: true}
-  
+
   def kana_name
       kana_last_name + kana_first_name
   end
