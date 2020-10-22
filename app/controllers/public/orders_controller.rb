@@ -6,6 +6,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def information
+
   end
 
   def new
