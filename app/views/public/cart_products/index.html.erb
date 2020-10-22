@@ -14,36 +14,46 @@
             <th>数量</th>
             <th>小計</th>
             <th></th>
+            <th></th>
           </tr>
         </thead>
 
         <tbody>
+          <% @sum = 0 %>
           <% @cart_products.each do |cart| %>
-    			  <tr id="cart-<%= cart_product.id %>">
+    			  <tr id="cart-<%= cart.id %>">
               <td class="text-left">
                 <%= attachment_image_tag( cart.product, :image, size: "55x43", fallback: "no_image.jpg") %>
                 <%= cart.product.name %>
               </td>
+              <!--単価税込-->
               <td class="text-right">
-                <td><%= cart.including_tax.to_s(:delimited) %></td>
+                <td><%= cart.product.including_tax.to_s(:delimited) %></td>
                 <%#= tax_price(cart.product.excluding_tax).(:delimited) %>
               </td>
               <td>
-                <%= form_for(cart, url: cart_products_path, method: :patch , remote: true)do |f| %>
+                <!--数量変更ボタン-->
+                <%= form_for(cart, url: cart_product_path(cart), method: :patch , remote: true)do |f| %>
                 <%= f.number_field :quantity, class: "quantity", size: 10, min: 1, id: "quantity_cart" %>
                 <%= f.submit "変更", class: "btn btn-info" %>
-              <% end %>
+                <% end %>
               </td>
+              <!--小計-->
               <td class="text-right" id='price_including_tax-<%= cart.id %>'>
-                ¥<%= price_including_tax(cart).to_s(:delimited) %>
+                  ¥<%= cart.product.including_tax * cart.quantity %>
+                ¥<%#= price_including_tax(cart).to_s(:delimited) %>
               </td>
               <td>
-                <%= link_to " 削除する", cart_products_path(cart), method: :delete, remote: true, data: {confirm: "#{cart_product.product.name}を削除してよろしいですか？"}, class: "glyphicon glyphicon-trash btn btn-danger" %>
-              </td>>
+                <%= link_to " 削除する", cart_product_path(cart), method: :delete, remote: true, data: {confirm: "#{cart.product.name}を削除してよろしいですか？"}, class: "glyphicon glyphicon-trash btn btn-danger" %>
+              </td>
             </tr>
+            <!--合計金額-->
+            <% @sum += cart.product.including_tax * cart.quantity  %>
+
           <% end %>
         </tbody>
       </table>
+
               <!-- 買い物を続けるボタン -->
               <div class="col-xs-9 margin-bottom">
                 <div class ="action">
@@ -57,7 +67,7 @@
           <tr>
             <td class="warning">合計金額</td>
             <td class="text-right" id='total_payment'>
-              ¥<%= total_payment(@cart_products).to_s(:delimited) %>
+              ¥<%= @sum %>
             </td>
           </tr>
         </thead>
