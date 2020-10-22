@@ -1,3 +1,15 @@
+<% if @product.errors.any? %>
+  <div id="error_explanation">
+    <h3><%= pluralize(@product.errors.count, "error") %> prohibited this obj from being saved:</h3>
+
+    <ul>
+      <% @product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <div class="container">
 	<div class="row">
 		<h2>商品編集</h2>
@@ -16,38 +28,37 @@
 			<br>
 				<div class="field form-group">
 					<label class="col-md-2 control-label" for="InputEmail">商品名</label>
-								<div class="col-md-10">
-
-					<%= f.text_field :name, class: "name" %>
+								<div class="col-md-8">
+					<%= f.text_field :name, class: "name col-md-10" %>
 					</div>
 				</div>
 
 				<div class="field form-group">
 					<label class="col-md-2 control-label" for="InputEmail">商品説明</label>
-								<div class="col-md-10">
+								<div class="col-md-8">
 
-					<%= f.text_area :discription, class: "discription" %>
+					<%= f.text_area :discription, class: "discription col-md-10" %>
 					</div>
 				</div>
 
 				<div class="field form-group">
 					<label class="col-md-2 control-label" for="InputEmail">ジャンル</label>
-								<div class="col-md-3">
+								<div class="col-md-8">
 					<%= f.collection_select(:genre_id, Genre.all, :id, :name, {},{class: "col-md-10"}) %>
 					</div>
 				</div>
 
 				<div class="field form-group">
 					<label class="col-md-2 control-label" for="InputEmail">税抜き価格</label>
-								<div class="col-md-10">
-					<%= f.text_field :price_excluding_tax, class: "tax" %>
+								<div class="col-md-8">
+					<%= f.text_field :price_excluding_tax, class: "tax col-md-10" %>
 					</div>
 				</div>
 
 				<div class="field form-group">
 					<label class="col-md-2 control-label" for="InputEmail">販売ステータス</label>
-								<div class="col-md-10">
-		      						<%= f.select :is_active, [['販売中', :Availble ],['売り切れ', :Invalid ]], { include_blank: true } %>
+								<div class="col-md-8">
+		      						<%= f.select :is_active, [['販売中', :Availble ],['売り切れ', :Invalid ]], {}, {class: "col-md-10"} %>
 		                        </div>
 				</div>
 

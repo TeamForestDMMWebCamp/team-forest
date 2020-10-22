@@ -1,20 +1,21 @@
-<% if product.genre.is_active == "Availble" %>
-  <div class="product-container">
-    <%= link_to product_path(product.id), class: "btn-link", :style=>"color:#0099FF;" do %>
-
-      <div id="img_field" class="product">
-        <%= attachment_image_tag(product, :image, size: "180x130", fallback: "no_image.jpg") %>
-      </div>
-
-      <p class="product-name">
-        <%= product.name %>
-      </p>
-    <% end %>
-
-    <% if product.is_active == true %>
-      <p>¥<%= product.including_tax(:delimited) %></p>
-    <% elsif product.is_active == false %>
-      <p>売り切れ中</p>
-    <% end %>
-  </div>
+<% products.each do |product| %>
+		
+	<div class="col-xs-3">
+		<%= link_to product_path(product.id), class: "btn-link", :style=>"color:0099FF;" do %>
+			<span id="img_field" class="product">
+				<%= attachment_image_tag(product, :image, size: "180x130", fallback: "no_image.jpg") %>
+			</span>
+			<p>
+				<%= product.name %>
+			</p>
+			<% if product.is_active == "Availble" %>
+				<p>
+					¥<%= product.including_tax.to_s(:delimited) %>
+				</p>
+			<% elsif product.is_active == "Invalid" %>
+      	<p class="soldout">売り切れ中</p>
+      <% end %>
+		<% end %>
+	</div>
 <% end %>
+		

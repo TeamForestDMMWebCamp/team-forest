@@ -1,10 +1,22 @@
+<% if @product.errors.any? %>
+  <div id="error_explanation">
+    <h3><%= pluralize(@product.errors.count, "error") %> prohibited this obj from being saved:</h3>
+
+    <ul>
+      <% @product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <div class="container">
 	<div class="row">
 		<br>
 		<%= form_with model:@product, url: '/admin/products', method: :post, class: "form-horizontal", local: true do |f| %>
 			<div class="col-md-3">
 				<div class="field">
-				  	<%= attachment_image_tag(@product, :image, fallback: "no_image.jpg", size: "250x250") %>
+				  <%= attachment_image_tag(@product, :image, fallback: "no_image.jpg", size: "250x250") %>
 					<%= f.attachment_field :image, class: "user_image" %>
 				</div>
 			</div>
@@ -16,23 +28,23 @@
 				<br>
 				<div class="field form-group">
 					<label class="col-md-2 control-label" for="InputEmail">商品名</label>
-						<div class="col-md-10">
+						<div class="col-md-8">
 
-							<%= f.text_field :name, class: "name" %>
+							<%= f.text_field :name, class: "name col-md-10" %>
 						</div>
 				</div>
 
 				<div class="field form-group">
 					<label class="col-md-2 control-label" for="InputEmail">商品説明</label>
-						<div class="col-md-10">
+						<div class="col-md-8">
 
-							<%= f.text_area :discription, class: "discription" %>
+							<%= f.text_area :discription, class: "discription col-md-10" %>
 					</div>
 				</div>
 
 				<div class="field form-group">
 					<label class="col-md-2 control-label" for="InputEmail">ジャンル</label>
-						<div class="col-md-3">
+						<div class="col-md-8">
 
 							<%= f.collection_select(:genre_id, Genre.all, :id, :name, {},{class: "col-md-10"}) %>
 						</div>
@@ -40,16 +52,16 @@
 
 				<div class="field form-group">
 					<label class="col-md-2 control-label" for="InputEmail">税抜き価格</label>
-						<div class="col-md-10">
+						<div class="col-md-8">
 
-							<%= f.text_field :price_excluding_tax, class: "tax" %>
+							<%= f.text_field :price_excluding_tax, class: "tax col-md-10" %>
 						</div>
 				</div>
 
 				<div class="field form-group">
 					<label class="col-md-2 control-label" for="InputEmail">販売ステータス</label>
-						<div class="col-md-10">
-				      		<%= f.select :is_active, [['販売中', :Availble ],['売り切れ', :Invalid ]], { include_blank: true } %>
+						<div class="col-md-8">
+				      		<%= f.select :is_active, [['販売中', :Availble ],['売り切れ', :Invalid ]], {}, {class: "col-md-10"}%>
 	      				</div>
 				</div>
 

@@ -10,25 +10,25 @@
 			<table class="table table-hover">
 				<tbody>
 					<tr>
-						<th>商品名</th>
-						<td><%= @product.name %></td>
+						<th class="table-noborder">商品名</th>
+						<td class="table-noborder"><%= @product.name %></td>
 
 					</tr>
 					<tr>
-						<th>商品説明</th>
-						<td><%= @product.discription %></td>
+						<th class="table-noborder">商品説明</th>
+						<td class="table-noborder"><%= @product.discription %></td>
 					</tr>
 					<tr>
-						<th>ジャンル</th>
-						<td><%= @product.genre.name %></td>
+						<th class="table-noborder">ジャンル</th>
+						<td class="table-noborder"><%= @product.genre.name %></td>
 					</tr>
 					<tr>
-						<th nowrap>税込価格(税抜価格)</th>
-						<td><%= @product.including_tax %>円(<%= @product.price_excluding_tax %>)円</td>
+						<th nowrap class="table-noborder">税込価格(税抜価格)</th>
+						<td class="table-noborder"><%= @product.including_tax %>円(<%= @product.price_excluding_tax %>)円</td>
 					</tr>
 					<tr>
-						<th nowrap>販売ステータス</th>
-						<td>
+						<th nowrap class="table-noborder">販売ステータス</th>
+						<td class="table-noborder">
 							<% if @product.is_active == "Availble"  %>
 					        <%= "販売中" %>
 					        <% else %>
@@ -37,8 +37,8 @@
 	     			</td>
 					</tr>
 					<tr>
-						<th> </th>
-						<td align="right">
+						<th class="table-noborder"> </th>
+						<td align="right" class="table-noborder">
 							<%= link_to "編集ページへ", edit_admin_product_path, class:"btn btn-info btn-md" %>
 						</td>
 					</tr>

@@ -16,10 +16,10 @@ class Admin::ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      flash[:notice] = "商品登録しました"
+      flash[notice] = "商品登録しました"
       redirect_to admin_product_path(@product)
     else
-      flash[:notice] = "商品登録ができませんでした"
+      flash[notice] = "商品登録ができませんでした"
       render :new
       
     end
@@ -32,10 +32,10 @@ class Admin::ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
     if @product.update(product_params)
-      flash[:notice] = '編集に成功しました'
+      flash[notice] = '編集に成功しました'
       redirect_to admin_product_path(@product)
     else
-      flash[:notice] = "編集ができませんでした"
+      flash[notice] = "編集ができませんでした"
       render :edit
     end
   end
