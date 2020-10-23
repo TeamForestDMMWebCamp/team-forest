@@ -6,13 +6,30 @@ class Public::OrdersController < ApplicationController
   end
 
   def information
-
-  end
-
-  def new
+    @shipping_addresses = current_customer.shipping_addresses
   end
 
   def confirm
+    if params["radio"] == "r1"
+      # payment_methodのみ取得
+      @order = Order.new(order_params)
+      # 住所は会員情報から取得
+      render :new
+    elsif params["radio"] == "r2"
+      @order = Order.new(order_params)
+      # 住所は配送先一覧から取得
+      render :new
+    elsif params["radio"] == "r3"
+      # text_fieldからもデータ取得
+      @order = Order.new(order_form_params)
+      render :new
+    else
+      # エラーメッセージ
+      render :information
+    end
+  end
+
+  def new
   end
 
   def create
@@ -20,4 +37,17 @@ class Public::OrdersController < ApplicationController
 
   def thanks
   end
+
+  private
+
+  # 宛先選択のラジオボタンが１か２だった場合
+  def order_params
+    params.permit(:payment_method)
+  end
+
+  # 宛先選択のラジオボタンが３だった場合
+  def order_form_params
+    params.permit(:payment_method, :shipping_name, :shipping_address, :shipping_postal_code)
+  end
+
 end
