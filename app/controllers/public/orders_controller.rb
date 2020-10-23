@@ -16,8 +16,10 @@ class Public::OrdersController < ApplicationController
       # 住所は会員情報から取得
       render :new
     elsif params["radio"] == "r2"
+      # payment_methodのみ取得
       @order = Order.new(order_params)
       # 住所は配送先一覧から取得
+      @shipping_address = ShippingAddress.find(params[:shipping_select])
       render :new
     elsif params["radio"] == "r3"
       # text_fieldからもデータ取得

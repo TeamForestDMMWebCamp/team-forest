@@ -5,4 +5,17 @@
 <% else %>
   入力されていません</br>
 <% end %>
-<%= @order.order_shippings %>
+
+<% if params["radio"] == "r1" %>
+　<%= current_customer.zip_code %>
+　<%= current_customer.address %>
+　<%= current_customer.name %>
+<% elsif params["radio"] == "r2" %>
+　<%= @shipping_address.postal_code %>
+　<%= @shipping_address.address %>
+　<%= @shipping_address.name %>
+<% elsif params["radio"] == "r3" %>
+　<%= @order.order_shippings %>
+<% else %>
+  入力されていません</br>
+<% end %>

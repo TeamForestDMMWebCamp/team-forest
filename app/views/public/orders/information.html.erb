@@ -35,7 +35,7 @@
 
         <%= radio_button_tag("radio", "r2") %>
           <%= f.label :"登録済住所から選択" %></br>
-          　<%= f.collection_select(:shippings, @shipping_addresses, :id, :shippings) %></br></br>
+          　<%= f.collection_select(:shipping_select, @shipping_addresses, :id, :shippings) %></br></br>
 
         <%= radio_button_tag("radio", "r3") %>
           <%= f.label :"新しいお届け先" %>
