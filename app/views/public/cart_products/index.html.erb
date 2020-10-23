@@ -14,7 +14,6 @@
             <th>数量</th>
             <th>小計</th>
             <th></th>
-            <th></th>
           </tr>
         </thead>
 
@@ -28,8 +27,7 @@
               </td>
               <!--単価税込-->
               <td class="text-right">
-                <td><%= cart.product.including_tax.to_s(:delimited) %></td>
-                <%#= tax_price(cart.product.excluding_tax).(:delimited) %>
+                <%= cart.product.including_tax.to_s(:delimited) %>
               </td>
               <td>
                 <!--数量変更ボタン-->
@@ -41,7 +39,6 @@
               <!--小計-->
               <td class="text-right" id='price_including_tax-<%= cart.id %>'>
                   ¥<%= cart.product.including_tax * cart.quantity %>
-                ¥<%#= price_including_tax(cart).to_s(:delimited) %>
               </td>
               <td>
                 <%= link_to " 削除する", cart_product_path(cart), method: :delete, remote: true, data: {confirm: "#{cart.product.name}を削除してよろしいですか？"}, class: "glyphicon glyphicon-trash btn btn-danger" %>
