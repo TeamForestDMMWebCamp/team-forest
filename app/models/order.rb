@@ -7,4 +7,5 @@ class Order < ApplicationRecord
   def order_shippings
     shipping_postal_code + "　" + shipping_address + "　" + shipping_name
   end
+
 end

@@ -10,6 +10,8 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
+    @cart_products = current_customer.cart_products
+    @shipping_fee = 800
     if params["radio"] == "r1"
       # payment_methodのみ取得
       @order = Order.new(order_params)
@@ -32,6 +34,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def new
+
   end
 
   def create
