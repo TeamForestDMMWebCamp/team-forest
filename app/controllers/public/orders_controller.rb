@@ -43,6 +43,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
+    redirect_to orders_thanks_path
   end
 
   def thanks

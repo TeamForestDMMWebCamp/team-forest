@@ -122,9 +122,17 @@
 		<%= form_with model:@order, url: "/orders", method: :post, class: "form-horizontal", local: true do |f| %>
 
 			<!--↓ordered_productテーブルへのデータ受け渡し-->
-			<%= f.fields_for :ordered_products, @order.ordered_products.build do |ordered_product| %>
-				<%= ordered_product.hidden_field :order_id, value: "1" %>
-			<% end %>
+			<%= #f.fields_for :ordered_products, @order.ordered_products.build do |ordered_product| %>
+
+				<% #@cart_products.each do |cart| %>
+
+					<%= #ordered_product.hidden_field :product_id, value: cart.product.id %>
+					<%= #ordered_product.hidden_field :ordered_quantity, value: cart.quantity %>
+					<%= #ordered_product.hidden_field :price_including_tax, value: cart.product.including_tax %>
+
+				<% #end %>
+
+			<% #end %>
 <!--↑絶賛編集中-->
 
 			<!--↓前頁でお届け先をどう選択したかで条件分岐-->
