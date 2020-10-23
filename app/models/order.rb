@@ -3,9 +3,6 @@ class Order < ApplicationRecord
   belongs_to :customer
 
   enum payment_method: { credit: 0, bank: 1}
-
-  def order_shippings
-    shipping_postal_code + "　" + shipping_address + "　" + shipping_name
-  end
+  enum order_recieved_status: { waiting: 0, payed: 1, making: 2, preparing: 3, sent: 4}
 
 end

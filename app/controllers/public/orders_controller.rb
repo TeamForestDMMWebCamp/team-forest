@@ -11,6 +11,7 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @cart_products = current_customer.cart_products
+    # ↓送料の指定
     @shipping_fee = 800
     if params["radio"] == "r1"
       # payment_methodのみ取得
