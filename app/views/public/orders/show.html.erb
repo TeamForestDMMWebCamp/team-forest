@@ -36,7 +36,19 @@
 				<tr class="">
 					<th class="info">ステータス</th>
 					<td>
-						<%= @order.order_received_status %>
+						<% if @order.order_received_status == "waiting" %>
+						　入金待ち
+						<% elsif @order.order_received_status == "payed" %>
+						　入金確認
+						<% elsif @order.order_received_status == "making" %>
+						　制作中
+						<% elsif @order.order_received_status == "preparing" %>
+						　発送準備中
+						<% elsif @order.order_received_status == "sent" %>
+						　発送済み
+						<% else %>
+							エラー
+						<% end %>
 					</td>
 				</tr>
 			</table>
