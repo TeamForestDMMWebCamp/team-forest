@@ -1,2 +1,43 @@
-<h1>Admin::Orders#show</h1>
-<p>Find me in app/views/admin/orders/show.html.erb</p>
+
+<% provide(:title, "注文履歴詳細") %>
+<div calss="row">
+  <div class="col-xs-12">
+    <h2 class="head-line title_h2 text-center">注文履歴詳細</h2>
+        <table class="table table-hover table-bordered table-condensed">
+          <thead>
+            <tr class="tablehead">
+              <th>商品名</th>
+              <th>単価（税込み）</th>
+              <th>数量</th>
+              <th>小計</th>
+              <th>制作ステータス</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @order_products.each do |order_product| %>
+              <tr>
+                <td>
+                  <%= order_product.product.name %>
+                </td>
+                <td>
+                  <%= ordered_product.price_including_tax %><br>
+                </td>
+                <td>
+                  <% ordered_product.ordered_quantity %>
+                </td>
+                <td class="text-right">
+                  <%= order.total_payment.to_s(:delimited) %>円
+                </td>
+                <td>
+                  <%= order.order_received_status %>
+                </td>
+                <td>
+                  <%=  "更新", orders_path(order.id), class: "glyphicon glyphicon-zoom-in btn btn-success" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+  
+    </div>
+</div>
