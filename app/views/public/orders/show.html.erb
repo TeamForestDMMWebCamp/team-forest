@@ -3,12 +3,12 @@
 		<div class="col-md-3 col-md-offset-1", style="background-color: #EEEEEE;">
 			<h3>注文履歴詳細</h3>
 		</div>
-		</br>
 	</div>
 
 	<div class="row">
-		<p class="font-weigt-bold">注文情報</p>
-		<div class="col-md-4">
+		</br>
+		<div class="col-md-6">
+			<p class="font-weigt-bold">注文情報</p>
 			<table class="table table-hover table-bordered">
 				<tr class="">
 					<th class="info">注文日</th>
@@ -29,7 +29,13 @@
 				<tr class="">
 					<th class="info">支払方法</th>
 					<td>
-						<%= @order.payment_method %>
+						<% if @order.payment_method == "credit" %>
+							クレジットカード
+						<% elsif @order.payment_method == "bank" %>
+							銀行振り込み
+						<% else %>
+							エラー
+						<% end %>
 					</td>
 				</tr>
 
@@ -37,15 +43,15 @@
 					<th class="info">ステータス</th>
 					<td>
 						<% if @order.order_received_status == "waiting" %>
-						　入金待ち
+							入金待ち
 						<% elsif @order.order_received_status == "payed" %>
-						　入金確認
+							入金確認
 						<% elsif @order.order_received_status == "making" %>
-						　制作中
+							制作中
 						<% elsif @order.order_received_status == "preparing" %>
-						　発送準備中
+							発送準備中
 						<% elsif @order.order_received_status == "sent" %>
-						　発送済み
+							発送済み
 						<% else %>
 							エラー
 						<% end %>
@@ -82,39 +88,41 @@
 	</div>
 
 	<div class="row">
-		<p class="font-weigt-bold">注文内容</p>
-		<table class="table table-hover table-bordered">
-			<thead>
-				<tr class="info">
-					<th>商品</th>
-					<th>単価(税込)</th>
-					<th>個数</th>
-					<th>小計</th>
-				</tr>
-			</thead>
-
-			<tbody>
-				<% @ordered_products.each do |ordered_product| %>
-					<tr>
-						<td class="text-left">
-							<%= ordered_product.name %>
-						</td>
-						<!--単価税込-->
-						<td class="text-right">
-							¥<%= ordered_product.including_tax.to_s(:delimited) %>
-						</td>
-						<!--数量-->
-						<td class="text-left">
-							<%= ordered_product.quantity %>
-						</td>
-						<!--小計-->
-						<td class="text-right">
-							¥<%= (ordered_product.including_tax * ordered_product.quantity).to_s(:delimited) %>
-						</td>
+		<div class="col-md-10">
+			<p class="font-weigt-bold">注文内容</p>
+			<table class="table table-hover table-bordered">
+				<thead>
+					<tr class="info">
+						<th>商品</th>
+						<th>単価(税込)</th>
+						<th>個数</th>
+						<th>小計</th>
 					</tr>
-				<% end %>
-			</tbody>
-		</table>
+				</thead>
+
+				<tbody>
+					<% @ordered_products.each do |ordered_product| %>
+						<tr>
+							<td class="text-left">
+								<%= ordered_product.product.name %>
+							</td>
+							<!--単価税込-->
+							<td class="text-right">
+								¥<%= ordered_product.product.including_tax.to_s(:delimited) %>
+							</td>
+							<!--数量-->
+							<td class="text-left">
+								<%= ordered_product.ordered_quantity %>
+							</td>
+							<!--小計-->
+							<td class="text-right">
+								¥<%= (ordered_product.product.including_tax * ordered_product.ordered_quantity).to_s(:delimited) %>
+							</td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
 	</div>
 
 </div>
