@@ -3,11 +3,13 @@
     <div class="col-md-7">
       <h3 class="head-line title_h2">ショッピングカート</h3>
     </div>
-    <div class="col-md-4">
-      <span class="pull-right margin-bottom align-bottom">
-        <%= link_to " カートを空にする", cart_products_path, method: :delete, data: {confirm: 'カートを空にして本当によろしいですか？'}, class: "glyphicon glyphicon-trash btn btn-danger" %>
-      </span>
-    </div>
+    <% if @cart_products.present? %>
+      <div class="col-md-4">
+        <span class="pull-right margin-bottom align-bottom">
+          <%= link_to " カートを空にする", cart_products_path, method: :delete, data: {confirm: 'カートを空にして本当によろしいですか？'}, class: "glyphicon glyphicon-trash btn btn-danger" %>
+        </span>
+      </div>
+    <% end %>
   </div>
 
   <% if @cart_products.present? %>

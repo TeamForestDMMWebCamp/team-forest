@@ -15,12 +15,6 @@ class Public::OrdersController < ApplicationController
     # ↓送料の指定
     @shipping_fee = 800
 
-    # ordered_productとの紐づけ
-    # @order = Order.new
-    # カート内商品の数だけレコードの枠を用意する
-    # @n = @cart_products.count
-    # @n.times { @order.ordered_products.build }
-
     # ↓お届け先の条件分岐
     if params["radio"] == "r1"
       # payment_methodのみ取得
@@ -63,6 +57,8 @@ class Public::OrdersController < ApplicationController
 
 				@ordered_product.save
 			end
+
+			@cart_products.destroy_all
       redirect_to orders_thanks_path
     else
       # 注文できなかった際のエラーメッセージ
