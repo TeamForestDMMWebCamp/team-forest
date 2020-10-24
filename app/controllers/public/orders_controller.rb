@@ -10,24 +10,31 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
+    # ユーザーのカート内商品の取得
     @cart_products = current_customer.cart_products
     # ↓送料の指定
     @shipping_fee = 800
+
     # ordered_productとの紐づけ
-    @order = Order.new
-    @order.ordered_products.build
+    # @order = Order.new
+    # カート内商品の数だけレコードの枠を用意する
+    # @n = @cart_products.count
+    # @n.times { @order.ordered_products.build }
+
     # ↓お届け先の条件分岐
     if params["radio"] == "r1"
       # payment_methodのみ取得
-      @order_info = Order.new(order_params)
+      @order_info = Order.new(order_select_params)
       # 住所は会員情報から取得
       render :new
+
     elsif params["radio"] == "r2"
       # payment_methodのみ取得
-      @order_info = Order.new(order_params)
+      @order_info = Order.new(order_select_params)
       # 住所は配送先一覧から取得
       @shipping_address = ShippingAddress.find(params[:shipping_select])
       render :new
+
     elsif params["radio"] == "r3"
       # text_fieldからもデータ取得
       @order_info = Order.new(order_form_params)
@@ -43,7 +50,24 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
-    redirect_to orders_thanks_path
+    @order = Order.new(order_params)
+    @cart_products = current_customer.cart_products
+
+    if @order.save
+      @cart_products.each do |cart|
+        @ordered_product =  OrderedProduct.new
+        @ordered_product.order_id = @order.id
+        @ordered_product.product_id = cart.product.id
+				@ordered_product.ordered_quantity = cart.quantity
+				@ordered_product.price_including_tax = cart.product.including_tax
+
+				@ordered_product.save
+			end
+      redirect_to orders_thanks_path
+    else
+      # 注文できなかった際のエラーメッセージ
+      redirect_to cart_products_path
+    end
   end
 
   def thanks
@@ -51,14 +75,22 @@ class Public::OrdersController < ApplicationController
 
   private
 
-  # 宛先選択のラジオボタンが１か２だった場合
-  def order_params
+  # 宛先選択のラジオボタンが１(現在住所)か２(配送先一覧から選択)だった場合
+  def order_select_params
     params.permit(:payment_method)
   end
 
-  # 宛先選択のラジオボタンが３だった場合
+  # 宛先選択のラジオボタンが３(新規入力)だった場合
   def order_form_params
-    params.permit(:payment_method, :shipping_name, :shipping_address, :shipping_postal_code)
+    params.permit(:payment_method, :shipping_name, :shipping_postal_code, :shipping_address)
+  end
+
+  def order_params
+    params.permit(:customer_id, :shipping_name, :shipping_postal_code, :shipping_address, :shipping_fee, :total_payment, :payment_method)
+  end
+
+  def ordered_product_params
+    params.require(:ordered_product).permit(:order_id, :product_id, :ordered_quantity, :price_including_tax)
   end
 
 end
