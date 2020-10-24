@@ -3,6 +3,8 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
+    @order = Order.find(params[:id])
+    @orderd_products = OrderedProduct.where(order_id: params[:id])
   end
 
   def information
