@@ -11,6 +11,7 @@ class Public::CustomersController < ApplicationController
     @customer = current_customer
     @customer.is_deleted = :Invalid
     @customer.save
+    flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
     redirect_to root_path
   end
 
