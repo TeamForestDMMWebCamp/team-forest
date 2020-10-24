@@ -85,8 +85,4 @@ class Public::OrdersController < ApplicationController
     params.permit(:customer_id, :shipping_name, :shipping_postal_code, :shipping_address, :shipping_fee, :total_payment, :payment_method)
   end
 
-  def ordered_product_params
-    params.require(:ordered_product).permit(:order_id, :product_id, :ordered_quantity, :price_including_tax)
-  end
-
 end
