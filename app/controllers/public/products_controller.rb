@@ -1,8 +1,10 @@
 class Public::ProductsController < ApplicationController
+
   def index
     @genres = Genre.all
     # @products = Product.all.page(params[:page]).per(8)
     @products = Product.where(is_active: "Availble").page(params[:page]).per(8)
+    @products_n = Product.where(is_active: "Availble")
   end
 
   def genre

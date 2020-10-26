@@ -1,4 +1,6 @@
 class Public::OrdersController < ApplicationController
+  before_action :authenticate_customer!
+
 	def index
    	 @orders = current_customer.orders
 	end
@@ -37,7 +39,8 @@ class Public::OrdersController < ApplicationController
       @order_info = Order.new(order_form_params)
       render :new
     else
-      # エラーメッセージ
+      #ラジオボタン自動選択なので、基本的には発生しない
+      flash[:notice] = "配送先が選択されていません"
       render :information
     end
   end
@@ -64,8 +67,8 @@ class Public::OrdersController < ApplicationController
 			@cart_products.destroy_all
       redirect_to orders_thanks_path
     else
-      # 注文できなかった際のエラーメッセージ
-      redirect_to cart_products_path
+      flash[:notice] = "情報の入力を完了してください"
+      redirect_to orders_information_path
     end
   end
 
