@@ -1,3 +1,22 @@
 // Place all the styles related to the admin::Orders controller here.
 // They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+// You can use Sass (SCSS) h=>ere: http://sass-lang.com/
+.col-xs-3{
+  font-size: 20px;
+
+  margin-top: 80px;
+}
+
+.table-hover{
+  font-size: 20px;
+}
+
+#ordered_product_production_status{
+
+  width: 150px;
+
+}
+
+option{
+  text-align: center;
+}
