@@ -6,6 +6,16 @@ class ApplicationController < ActionController::Base
     last_name + first_name
   end
 
+#ログアウト後の遷移先
+  def after_sign_out_path_for(resource)
+    case resource
+      when :admin
+        new_admin_session_path
+      when :customer
+        root_path
+    end
+  end
+
   protected
 
   def configure_permitted_parameters
@@ -14,4 +24,6 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
     devise_parameter_sanitizer.permit :sign_in, keys: added_attrs
   end
+
+
 end

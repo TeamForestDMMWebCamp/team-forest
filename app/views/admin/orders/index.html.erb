@@ -25,7 +25,21 @@
 									<% end %>
 									<td><%= order.customer.name%></td>
 									<td><%= order.order_total_amount %></td>
-									<td><%= order.order_received_status %></td>
+									<td>
+										<% if order.order_received_status == "waiting" %>
+											入金待ち
+										<% elsif order.order_received_status == "paid" %>
+											入金確認
+										<% elsif order.order_received_status == "making" %>
+											製作中
+										<% elsif order.order_received_status == "preparing" %>
+											発送準備中
+										<% elsif order.order_received_status == "sent" %>
+											発送済み
+										<% else %>
+											エラー
+										<% end %>
+									</td>
 								</tr>
 								<% end %>
 							</tbody>
