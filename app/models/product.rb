@@ -14,7 +14,7 @@ class Product < ApplicationRecord
 
   validates :name, presence: true
 	validates :discription, presence: true, length: {maximum: 200}
-	validates :price_excluding_tax, presence: true
+	validates :price_excluding_tax, presence: true, numericality: { only_integer: true }
 	validates :genre_id, presence: true
 	validates :is_active, presence: true
 
