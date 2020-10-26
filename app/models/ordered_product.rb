@@ -2,7 +2,6 @@ class OrderedProduct < ApplicationRecord
   belongs_to :product
   belongs_to :order
 
-
   def each_total_payment
     ordered_quantity * price_including_tax
   end
@@ -12,6 +11,5 @@ class OrderedProduct < ApplicationRecord
   validates :product_id, :order_id, :quantity,
 			  		:price_including_tax, presence: true
 	validates :price_including_tax, :quantity, numericality: { only_integer: true }
-
 
 end
