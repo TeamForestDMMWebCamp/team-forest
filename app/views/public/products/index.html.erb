@@ -5,7 +5,7 @@
       <%= render "genres_list", genres: @genres %>
     </div>
     <div class="col-md-10">
-      <h3 class="product-index">商品一覧（全<%= @products.count %>件）</h3>
+      <h3 class="product-index">商品一覧（全<%= @products_n.count %>件）</h3>
       <div id="product">
         <% @products.each do |product| %>
           <div class="col-md-3">
