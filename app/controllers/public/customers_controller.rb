@@ -10,8 +10,8 @@ class Public::CustomersController < ApplicationController
 
   def out
     @customer = current_customer
-    @customer.is_deleted = :Invalid
-    @customer.save
+    @customer.update(is_deleted: "Invalid")
+    reset_session
     flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
     redirect_to root_path
   end
