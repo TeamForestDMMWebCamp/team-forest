@@ -11,6 +11,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def information
+    
     @shipping_addresses = current_customer.shipping_addresses
   end
 

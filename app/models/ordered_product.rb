@@ -12,4 +12,5 @@ class OrderedProduct < ApplicationRecord
 			  		:price_including_tax, presence: true
 	validates :price_including_tax, :ordered_quantity, numericality: { only_integer: true }
 
+
 end
