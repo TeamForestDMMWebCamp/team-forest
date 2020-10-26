@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row">
-		<div class="col-md-2 col-md-offset-2", style="background-color: #EEEEEE;">
-			<h3>マイページ</h3>
+		<div class="col-md-2 col-md-offset-2">
+			<h3 class="text-center", style="background-color: #EEEEEE;">マイページ</h3>
 		</div>
 	</div>
 
@@ -13,53 +13,48 @@
 	</div>
 
 	<div class="row">
-		<table class="table">
+		<table class="table table-hover table-bordered">
 			</br>
 			<tr>
-				<td>氏名</td>
+				<td class="info", style="width: 200px">氏名</td>
 				<td>
 					<%= @customer.name %>
 				</td>
 			</tr>
 
 			<tr>
-				<td>カナ</td>
+				<td class="info">カナ</td>
 				<td>
 					<%= @customer.kana_name %>
 				</td>
 			</tr>
 
 			<tr>
-				<td>郵便番号</td>
+				<td class="info">郵便番号</td>
 				<td>
 					<%= @customer.zip_code %>
 				</td>
 			</tr>
 
 			<tr>
-				<td>住所</td>
+				<td class="info">住所</td>
 				<td>
 					<%= @customer.address %>
 				</td>
 			</tr>
 
 			<tr>
-				<td>電話番号</td>
+				<td class="info">電話番号</td>
 				<td>
 					<%= @customer.phone_number %>
 				</td>
 			</tr>
 
 			<tr>
-				<td>メールアドレス</td>
+				<td class="info">メールアドレス</td>
 				<td>
 					<%= @customer.email %>
 				</td>
-			</tr>
-
-			<tr>
-				<td></td>
-				<td></td>
 			</tr>
 
 		</table>

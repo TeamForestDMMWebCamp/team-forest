@@ -20,7 +20,7 @@
 
           </nav>
             <nav>
-              <ul class="nav navbar-nav navbar-right">
+              <ul class="nav navbar-nav navbar-right" style="margin-top: 45px;">
                 <% if admin_signed_in? %>
                   <li><%= link_to "商品一覧(admin)", admin_products_path %></li>
                   <li><%= link_to "会員一覧", admin_customers_path %></li>
@@ -30,7 +30,7 @@
                 <% elsif customer_signed_in? %>
 
                   <li>
-                    <h4 style="color: white;">ようこそ、<%= current_customer.name %>さん！</h4>
+                    <h4 style="color: white; margin-top: 15px;">ようこそ、<%= current_customer.name %>さん！</h4>
                   </li>
 
                   <li><%= link_to "マイページ(login)", customers_path %></li>
