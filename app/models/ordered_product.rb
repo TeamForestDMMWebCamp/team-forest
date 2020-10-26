@@ -2,7 +2,6 @@ class OrderedProduct < ApplicationRecord
   belongs_to :product
   belongs_to :order
 
-
   def each_total_payment
     ordered_quantity * price_including_tax
   end
