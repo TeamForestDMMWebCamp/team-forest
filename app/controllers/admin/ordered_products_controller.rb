@@ -18,9 +18,10 @@ class Admin::OrderedProductsController < ApplicationController
     redirect_to admin_order_path(@ordered_product.order)
   end
 
+  private
+
   def ordered_product_params
     params.require(:ordered_product).permit(:production_status)
   end
-
 
 end
