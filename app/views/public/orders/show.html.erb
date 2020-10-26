@@ -44,7 +44,7 @@
 					<td>
 						<% if @order.order_received_status == "waiting" %>
 							入金待ち
-						<% elsif @order.order_received_status == "payed" %>
+						<% elsif @order.order_received_status == "paid" %>
 							入金確認
 						<% elsif @order.order_received_status == "making" %>
 							制作中
