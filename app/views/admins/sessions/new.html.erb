@@ -1,27 +1,31 @@
   <div class="container">
-        <div class="row">
-            <div class="col-md-3 col-md-offset-3" style="background-color: #EEEEEE;">
-              <h3 class="text-center">管理者ログイン</h3>
+    <div class="row">
+    </br>
+      <div class="col-md-2 col-md-offset-3" style="background-color: #EEEEEE;">
+        <h4 class="text-center">管理者ログイン</h4>
+      </div>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <%= render "layouts/error_messages", resource: resource %>
+            <div class="col-md-9 col-md-offset-3">
+              <table class="table">
+                <div class="form-group">
+                  <tr>
+                    <th class="table-noborder" width="120">メールアドレス</th>
+                    <td class="table-noborder" ><%= f.email_field :email, autofocus: true, id:"form" %></td>
+                  </tr>
+                </div>
+                <div class="form-group">
+                  <tr>
+                    <th class="table-noborder">パスワード</th>
+                    <td class="table-noborder"><%= f.password_field :password, autocomplete: "current-password", id:"form" %></td>
+                  </tr>
+                </div>
+              </table>
             </div>
-                <div class="col-md-12 col-md-offset-4">
-                  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-                  <%= render "layouts/error_messages", resource: resource %>
-                    <div class="form-group">
-                      <label class="col-sm-2 control-label">メールアドレス</label>
-                      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-                    </div>
-                    
-                    <div class="form-group">
-                       <label class="col-sm-2 control-label">パスワード</label>
-                       <%= f.password_field :password, autocomplete: "current-password" %>
-                    </div>
-                    
-                    <div class ="form-group">
-                      <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-primary ">ログイン</button>
-                      </div>
-                    </div>
-                  <% end %>
-                </div> 
-        </div>
+
+            <div class="col-md-12 text-center" >
+              <%= f.submit "ログイン", class: "btn btn-primary btn-lg" %></td>
+            </div>
+      <% end %>
+    </div>
   </div>
