@@ -1,9 +1,19 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
+  #protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def name
     last_name + first_name
+  end
+
+#ログアウト後の
+  def after_sign_out_path_for(resource)
+    case resource
+      when :admin
+        new_admin_session_path
+      when :customer
+        root_path
+    end
   end
 
   protected
@@ -14,4 +24,6 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
     devise_parameter_sanitizer.permit :sign_in, keys: added_attrs
   end
+
+
 end
