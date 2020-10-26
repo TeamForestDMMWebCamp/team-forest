@@ -69,7 +69,7 @@
                 <%= order_product.each_total_payment %>円
               </td>
               <td class="text-center">
-                <%= form_with model: order_product, url: admin_ordered_product_path(order_product) do |f| %>
+                <%= form_with model: order_product, url: admin_ordered_product_path(order_product), local: true do |f| %>
 
                 <%= f.select :production_status, [["着手不可", "cannot"], ["製作待ち", "waiting"], ["製作中", "making"], ["製作完了", "compleate"]], class:"select-form" %>
 

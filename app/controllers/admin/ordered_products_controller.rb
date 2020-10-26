@@ -14,6 +14,8 @@ class Admin::OrderedProductsController < ApplicationController
         @ordered_product.order.update(order_received_status: "preparing")
       end
     end
+
+    redirect_to admin_order_path(@ordered_product.order)
   end
 
   def ordered_product_params
