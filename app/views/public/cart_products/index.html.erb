@@ -1,11 +1,13 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-7">
-      <h3 class="head-line title_h2">ショッピングカート</h3>
+    <!--<div class="col-md-7">-->
+    <!--  <h3 class="head-line title_h2">ショッピングカート</h3>-->
+    <div class="col-md-3">
+      <h3 class="text-center", style="background-color: #EEEEEE;">ショッピングカート</h3>
     </div>
     <% if @cart_products.present? %>
-      <div class="col-md-4">
-        <span class="pull-right margin-bottom align-bottom">
+      <div class="col-md-8", style="padding-top: 20px;">
+        <span class="pull-right">
           <%= link_to " カートを空にする", cart_products_path, method: :delete, data: {confirm: 'カートを空にして本当によろしいですか？'}, class: "glyphicon glyphicon-trash btn btn-danger" %>
         </span>
       </div>

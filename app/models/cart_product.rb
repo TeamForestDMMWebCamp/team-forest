@@ -4,7 +4,4 @@ class CartProduct < ApplicationRecord
   validates :customer_id, :product_id, :quantity, presence: true
 	validates :quantity, numericality: { only_integer: true }
 	
-	def total_price
-	  
-	end
 end

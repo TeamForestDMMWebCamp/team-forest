@@ -10,8 +10,10 @@ class Customer < ApplicationRecord
   validates :kana_first_name, presence: true
   validates :zip_code, presence: true
   validates :address, presence: true
-  validates :phone_number, presence: true
+  validates :phone_number, presence: true, numericality: { only_integer: true }
   validates :zip_code, length: {is: 7}, numericality: { only_integer: true }
+  validates :kana_first_name, :kana_last_name,
+    format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: "カタカナで入力して下さい。"}
 
   has_many :cart_products
   has_many :orders
@@ -26,7 +28,7 @@ class Customer < ApplicationRecord
   def name
       last_name + first_name
   end
-
+#退会機能
   def active_for_authentication?
     super && (self.is_deleted == "Availble")
   end
