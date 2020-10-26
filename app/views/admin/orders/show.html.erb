@@ -31,7 +31,7 @@
 					<th nowrap class="table-noborder">注文ステータス</th>
 					<td class="table-noborder" align="left">
 					    <%= form_with model: @order, url: admin_order_path do |f| %>
-              <%= f.select :order_received_status, [["入金待ち", "waiting"],["入金済み","payed"],["制作中","making"],["発送準備中","preparing"],["発送済み","sent"]] %>
+              <%= f.select :order_received_status, [["入金待ち", "waiting"],["入金確認","paid"],["制作中","making"],["発送準備中","preparing"],["発送済み","sent"]] %>
               <%= f.submit '更新', class: "btn btn-primary btn-md" %>
               <% end %>
 					</td>
